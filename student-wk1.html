@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การงานอาชีพ ม.1 - หน่วยที่ 1: อุปกรณ์อำนวยความสะดวกในบ้าน</title>
+    <!-- Google Fonts: Sarabun -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Sarabun', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* Light sky blue for fresh look */
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            margin: 20px auto;
+            padding: 30px;
+            box-sizing: border-box;
+            overflow: hidden; /* Clear floats for image */
+        }
+
+        h1, h2, h3 {
+            color: #1a73e8; /* Google Blue */
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        h1 { font-size: 2.5em; }
+        h2 { font-size: 1.9em; color: #34a853; /* Google Green */ }
+        h3 { font-size: 1.5em; color: #fbbc05; /* Google Yellow */ }
+
+        p {
+            text-align: justify;
+            margin-bottom: 18px;
+            font-size: 1.05em;
+        }
+
+        /* Activity Sections */
+        .activity-section {
+            background-color: #e6f3ff; /* Lighter blue for sections */
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.07);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .activity-section:hover {
+            transform: translateY(-3px);
+        }
+
+        .activity-section .activity-image { /* General class for all activity images */
+            max-width: 100%;
+            height: 220px; /* Consistent height for activity images */
+            background-size: cover; /* Use cover to fill the space, might crop edges slightly */
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Main Header Image */
+        .header-image {
+            width: 100%;
+            height: 300px; /* Increased height for header image */
+            background-image: url('https://hips.hearstapps.com/hmg-prod/images/gettyimages-510693044-1550590816.jpg'); /* Woman with iron/laundry */
+            background-size: cover; /* Cover to fill banner */
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 15px; /* Match container border-radius */
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Specific Activity Images */
+        .activity-image-1 {
+            background-image: url('https://images.unsplash.com/photo-1654064756668-16a32248d391?q=80&w=2090&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Cleaning supplies */
+        }
+
+        .activity-image-2 {
+            background-image: url('https://images.unsplash.com/photo-1570777758852-62d94955956a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Electrical box */
+        }
+        
+        /* New image for Activity 4/End of lesson */
+        .activity-image-4 {
+            background-image: url('https://cdn.pixabay.com/photo/2018/02/22/15/41/wood-3173282_1280.jpg'); /* Wood texture */
+        }
+
+        /* Form Elements */
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #444;
+            font-size: 1.05em;
+        }
+
+        input[type="text"],
+        textarea {
+            width: calc(100% - 24px); /* Account for padding and border */
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #cce0ff; /* Light blue border */
+            border-radius: 7px;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 1.0em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #1a73e8; /* Google Blue on focus */
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        button {
+            background-color: #1a73e8; /* Google Blue */
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #0d47a1; /* Darker blue */
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .feedback {
+            margin-top: 25px;
+            padding: 18px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 700;
+            display: none;
+            font-size: 1.1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .feedback.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        small {
+            display: block;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.6em; }
+            h3 { font-size: 1.3em; }
+            input[type="text"], textarea, button {
+                width: 100%;
+            }
+            .header-image {
+                height: 200px; /* Adjust height for smaller screens */
+            }
+            .activity-section .activity-image {
+                height: 180px; /* Adjust height for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>การงานอาชีพ ม.1</h1>
+            <h2>หน่วยการเรียนรู้ที่ 1: อุปกรณ์อำนวยความสะดวกในบ้าน</h2>
+            <div class="header-image" role="img" aria-label="ภาพถ่ายผู้หญิงกำลังรีดผ้าและมีตะกร้าผ้าอยู่ข้างๆ แสดงถึงงานบ้าน"></div>
+            <p>
+                ยินดีต้อนรับนักเรียนเข้าสู่หน่วยการเรียนรู้แรกของรายวิชาการงานอาชีพ!
+                ในหน่วยนี้ เราจะมาเรียนรู้และทำความเข้าใจเกี่ยวกับอุปกรณ์ต่างๆ
+                ที่ช่วยอำนวยความสะดวกในการทำงานบ้านของเรา
+                เพื่อให้นักเรียนสามารถใช้งานได้อย่างถูกต้อง ปลอดภัย
+                และเกิดประโยชน์สูงสุด รวมถึงรู้จักการประหยัดพลังงานด้วย
+            </p>
+        </header>
+
+        <form id="lessonForm">
+            <div class="activity-section">
+                <h3>ข้อมูลนักเรียน</h3>
+                <label for="studentName">ชื่อ-นามสกุล:</label>
+                <input type="text" id="studentName" name="studentName" placeholder="กรอกชื่อ-นามสกุลของนักเรียน" required>
+
+                <label for="studentClass">ชั้น (เช่น ม.1/1):</label>
+                <input type="text" id="studentClass" name="studentClass" placeholder="เช่น ม.1/1" required>
+
+                <label for="studentRollNo">เลขที่:</label>
+                <input type="text" id="studentRollNo" name="studentRollNo" placeholder="เช่น 1" required pattern="[0-9]{1,3}">
+                <small>นักเรียนต้องกรอกเลขที่ (ตัวเลขไม่เกิน 3 หลัก)</small>
+
+                <label for="studentId">เลขประจำตัวนักเรียน (โปรดกรอกให้ถูกต้อง):</label>
+                <input type="text" id="studentId" name="studentId" placeholder="เช่น 12345" required pattern="[0-9]{5}">
+                <small>นักเรียนต้องกรอกเลขประจำตัวนักเรียน 5 หลัก</small>
+            </div>
+
+            <div class="activity-section">
+                <h2>กิจกรรมที่ 1: สำรวจและบอกประโยชน์</h2>
+                <div class="activity-image activity-image-1" role="img" aria-label="ภาพถ่ายอุปกรณ์ทำความสะอาดบ้านหลากหลายชนิด"></div>
+                <p>
+                    ลองสังเกตอุปกรณ์ต่างๆ ภายในบ้านของนักเรียน 3-5 ชนิด
+                    ที่ช่วยให้การทำงานบ้านง่ายขึ้น หรือประหยัดเวลา/แรง
+                    แล้วอธิบายว่าอุปกรณ์เหล่านั้นช่วยอำนวยความสะดวกได้อย่างไรบ้าง
+                </p>
+                <label for="foundItemsBenefit">อุปกรณ์ที่นักเรียนพบเห็นและประโยชน์ของมัน:</label>
+                <textarea id="foundItemsBenefit" name="foundItemsBenefit" rows="5" placeholder="ตัวอย่าง: เครื่องซักผ้า ช่วยให้ซักผ้าได้เร็วขึ้นและไม่ต้องเหนื่อยบิดผ้าด้วยมือ"></textarea>
+            </div>
+
+            <div class="activity-section">
+                <h2>กิจกรรมที่ 2: จำแนกประเภทอุปกรณ์</h2>
+                <p>
+                    จากความรู้ที่นักเรียนมี ลองยกตัวอย่างอุปกรณ์ในบ้าน
+                    แล้วจำแนกออกเป็น 2 ประเภทหลักๆ คือ
+                    "อุปกรณ์ที่ใช้ไฟฟ้า" และ "อุปกรณ์ที่ไม่ใช้ไฟฟ้า"
+                    พร้อมยกตัวอย่างประเภทละ 3-5 ชนิด
+                </p>
+
+                <h3>อุปกรณ์ที่ใช้ไฟฟ้า:</h3>
+                <label for="electricalExamples">ตัวอย่างอุปกรณ์ที่ใช้ไฟฟ้า (เช่น ตู้เย็น, โทรทัศน์, พัดลม, หม้อหุงข้าวไฟฟ้า):</label>
+                <textarea id="electricalExamples" name="electricalExamples" rows="4" placeholder="ระบุอุปกรณ์ที่ใช้ไฟฟ้า 3-5 ชนิด"></textarea>
+
+                <h3>อุปกรณ์ที่ไม่ใช้ไฟฟ้า:</h3>
+                <label for="nonElectricalExamples">ตัวอย่างอุปกรณ์ที่ไม่ใช้ไฟฟ้า (เช่น ไม้กวาด, ที่ตักขยะ, หม้อหุงข้าวแก๊ส, ครก):</label>
+                <textarea id="nonElectricalExamples" name="nonElectricalExamples" rows="4" placeholder="ระบุอุปกรณ์ที่ไม่ใช้ไฟฟ้า 3-5 ชนิด"></textarea>
+            </div>
+
+            <div class="activity-section">
+                <h2>กิจกรรมที่ 3: ระวังภัยในบ้าน</h2>
+                <div class="activity-image activity-image-2" role="img" aria-label="ภาพถ่ายมือของช่างกำลังทำงานกับสายไฟและแผงวงจรไฟฟ้า"></div>
+                <p>
+                    จากภาพที่นักเรียนเห็น หรือจากประสบการณ์ของนักเรียนเอง
+                    ลองบอกว่าสถานการณ์ใดบ้างที่อาจก่อให้เกิดอันตรายจากการใช้อุปกรณ์ในบ้าน
+                    และนักเรียนจะมีวิธีป้องกันหรือแก้ไขอย่างไร?
+                </p>
+                <label for="dangerousSituation">สถานการณ์อันตรายที่นักเรียนพบเห็น/นึกถึง:</label>
+                <textarea id="dangerousSituation" name="dangerousSituation" rows="4" placeholder="เช่น การเสียบปลั๊กไฟหลายอันในเต้าเสียบเดียว หรือการใช้เครื่องใช้ไฟฟ้าขณะมือเปียก"></textarea>
+
+                <label for="dangerSolution">วิธีแก้ไขหรือป้องกันสถานการณ์อันตรายนั้นๆ:</label>
+                <textarea id="dangerSolution" name="dangerSolution" rows="4" placeholder="เช่น ไม่เสียบปลั๊กไฟเกินกำลัง, เช็ดมือให้แห้งก่อนสัมผัสเครื่องใช้ไฟฟ้า"></textarea>
+            </div>
+
+            <div class="activity-section">
+                <h2>กิจกรรมที่ 4: บทบาทของฉันในงานบ้าน</h2>
+                <p>
+                    นักเรียนมีบทบาทอะไรบ้างในการช่วยดูแลบ้าน
+                    และนักเรียนคิดว่าการช่วยงานบ้านมีความสำคัญอย่างไรต่อตนเองและครอบครัว?
+                </p>
+                <label for="studentRole">บทบาทของนักเรียนในงานบ้านและความสำคัญ:</label>
+                <textarea id="studentRole" name="studentRole" rows="5" placeholder="ตัวอย่าง: กวาดบ้านทุกวัน เพื่อให้บ้านสะอาดและช่วยแบ่งเบาภาระคุณพ่อคุณแม่"></textarea>
+            </div>
+
+            <div class="activity-section">
+                <h2>กิจกรรมที่ 5: สิ่งที่อยากเรียนรู้เพิ่มเติม</h2>
+                <div class="activity-image activity-image-4" role="img" aria-label="ภาพถ่ายพื้นผิวไม้ แสดงถึงความอบอุ่นและวัสดุธรรมชาติภายในบ้าน"></div>
+                <p>
+                    หลังจากเรียนรู้ในหน่วยนี้ นักเรียนอยากเรียนรู้อะไรเพิ่มเติม
+                    เกี่ยวกับอุปกรณ์อำนวยความสะดวกในบ้าน หรือการทำงานบ้านอื่นๆ บ้าง?
+                    มีคำถามอะไรที่อยากได้คำตอบ?
+                </p>
+                <label for="learningExpectation">สิ่งที่นักเรียนต้องการเรียนรู้/คำถามที่อยากรู้:</label>
+                <textarea id="learningExpectation" name="learningExpectation" rows="4" placeholder="เช่น อยากรู้ว่าเครื่องดูดฝุ่นแบบไร้สายใช้งานต่างจากแบบมีสายอย่างไร? หรือวิธีดูแลรักษาตู้เย็นให้ใช้งานได้นาน?"></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">ส่งข้อมูลกิจกรรม</button>
+            <div id="feedback" class="feedback"></div>
+        </form>
+    </div>
+
+    <script>
+        // **สำคัญมาก: แทนที่ YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE ด้วย URL ของ Web app ของนักเรียนที่ได้จาก Google Apps Script**
+        const googleSheetUrl = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'; 
+
+        document.getElementById('lessonForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // ป้องกันการ Submit แบบปกติของ Form
+
+            const studentIdInput = document.getElementById('studentId');
+            const studentRollNoInput = document.getElementById('studentRollNo'); // Get new roll number input
+            const feedbackDiv = document.getElementById('feedback');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Basic Validation
+            // Validate Student ID
+            if (!studentIdInput.value.match(/^[0-9]{5}$/)) {
+                feedbackDiv.textContent = 'ข้อผิดพลาด: โปรดกรอกเลขประจำตัวนักเรียน 5 หลักให้ถูกต้อง';
+                feedbackDiv.className = 'feedback error';
+                feedbackDiv.style.display = 'block';
+                return;
+            }
+            // Validate Roll Number
+            if (!studentRollNoInput.value.match(/^[0-9]{1,3}$/)) { // 1 to 3 digits
+                feedbackDiv.textContent = 'ข้อผิดพลาด: โปรดกรอกเลขที่ (ตัวเลขไม่เกิน 3 หลัก) ให้ถูกต้อง';
+                feedbackDiv.className = 'feedback error';
+                feedbackDiv.style.display = 'block';
+                return;
+            }
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'กำลังส่งข้อมูล...';
+            feedbackDiv.style.display = 'none';
+
+            const formData = new FormData(this); // เก็บข้อมูลจาก form
+            const params = new URLSearchParams(formData).toString(); // แปลงเป็น query string
+
+            fetch(googleSheetUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded', // สำคัญสำหรับ Apps Script
+                },
+                body: params,
+                mode: 'no-cors' // จำเป็นสำหรับ Google Apps Script หากเรียกใช้จากหน้าเว็บตรงๆ เพื่อเลี่ยง CORS
+            })
+            .then(response => {
+                // เนื่องจากใช้ mode: 'no-cors', response.ok จะเป็น false เสมอ
+                // และไม่สามารถอ่าน response.json() ได้โดยตรง
+                // วิธีตรวจสอบความสำเร็จคือ ต้องเช็คจาก Google Sheet โดยตรง
+                // หรือทำ redirect ไปยังหน้า success page ของ Apps Script
+                // แต่สำหรับเคสนี้ เราจะสมมติว่าสำเร็จถ้าไม่มี error ใน network request
+                feedbackDiv.textContent = 'บันทึกข้อมูลสำเร็จ! ขอบคุณนักเรียนที่ร่วมกิจกรรม';
+                feedbackDiv.className = 'feedback success';
+                feedbackDiv.style.display = 'block';
+                document.getElementById('lessonForm').reset(); // เคลียร์ฟอร์ม
+                // Focus back to student Name for next student, or studentId as needed
+                document.getElementById('studentName').focus(); 
+            })
+            .catch(error => {
+                console.error('Error submitting data:', error);
+                feedbackDiv.textContent = 'เกิดข้อผิดพลาดในการส่งข้อมูล: ' + error.message + ' โปรดลองใหม่อีกครั้ง';
+                feedbackDiv.className = 'feedback error';
+                feedbackDiv.style.display = 'block';
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'ส่งข้อมูลกิจกรรม';
+            });
+        });
+    </script>
+</body>
+</html>
