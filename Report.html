@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>รายงานผลการประเมินการเขียน — ฐานรักการอ่านผ่านเทคโนโลยีมีความพอเพียง</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#1976d2; --bg:#f7f7f9; --card:#ffffff; --text:#333; --muted:#6f6f6f;
+    --ok:#2e7d32; --good:#42a5f5; --dev:#f9a825; --need:#e53935; --accent:#39a7ff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Sarabun',system-ui,Segoe UI,Arial,sans-serif}
+  h1,h2,h3{margin:0 0 10px 0}
+  a{color:var(--brand);text-decoration:none}
+  .wrap{max-width:1120px;margin:auto;padding:20px}
+
+  /* HEADER + LOGO */
+  .brandhead{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+  .brandhead .logo{height:64px;width:auto;object-fit:contain;border-radius:8px;background:#fff;padding:6px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+  .brandhead .title{line-height:1.25}
+  .badge{background:var(--brand);color:#fff;border-radius:999px;padding:4px 10px;font-weight:700;font-size:12px;display:inline-block}
+
+  /* CARDS & GRID */
+  .card{background:var(--card);border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06);padding:18px}
+  .grid{display:grid;gap:16px}
+  .cols-2{grid-template-columns:2fr 1fr}
+  .cols-3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:960px){.cols-2,.cols-3{grid-template-columns:1fr}}
+
+  /* KPI */
+  .kpis{display:flex;gap:12px;flex-wrap:wrap}
+  .kpi{flex:1;min-width:200px;border:1px solid #e9eef6;border-radius:12px;padding:12px 14px}
+  .kpi .big{font-weight:800;font-size:28px}
+  .muted{color:var(--muted)}
+
+  /* DONUT (overlap-fixed) */
+  .donut-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px;border:1px solid #eef1f5;border-radius:14px}
+  .donut-wrap{position:relative;width:180px;max-width:100%}
+  .donut-wrap svg{display:block;width:100%;height:auto}
+  .donut-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+  .donut-center .pct{font-size:28px;font-weight:800;fill:#0b2545;color:#0b2545}
+  .donut-caption{margin-top:4px;text-align:center}
+  .donut-caption .en{font-size:14px;color:#0b2545}
+  .donut-caption .th{font-size:14px;color:var(--muted)}
+
+  /* BARS */
+  .legend{display:flex;gap:12px;flex-wrap:wrap}
+  .item{display:flex;align-items:center;gap:8px}
+  .sw{width:14px;height:14px;border-radius:4px}
+  .row{display:grid;grid-template-columns:220px 1fr 140px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed #e9e9e9}
+  .row:last-child{border:none}
+  .bar{height:20px;border-radius:999px;overflow:hidden;background:#eee}
+  .seg{height:100%;float:left}
+  .seg.ok{background:var(--ok)} .seg.good{background:var(--good)} .seg.dev{background:var(--dev)} .seg.need{background:var(--need)}
+  .crit{font-weight:700}
+
+  /* TABLE */
+  .table{width:100%;border-collapse:collapse}
+  .table th,.table td{padding:10px;border-bottom:1px solid #eee;text-align:right}
+  .table th:first-child,.table td:first-child{text-align:left}
+
+  /* SECTION */
+  .section{margin-top:16px}
+  .mini{font-size:13px;color:var(--muted)}
+
+  /* PRINT */
+  @media print{.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER with LOGO -->
+  <header class="brandhead">
+    <img class="logo" alt="School Logo"
+         src="https://lh7-rt.googleusercontent.com/formsz/AN7BsVDNKaR7kIShf4Yw_1a93wTYR1WgC1p1bo0tFxdN9W7F9viAe8pIJWAJDn-Q04-iEdZFnivqTzRvPv55L_TyzeLDZ3NQBGSKhlKwySdPXxXAWbMcLe2InQ4cp7mRLFwofyy6PT4IdTAvSbgtGbVEnDjXmw=w740?key=qIqXIF8XXdw30eF-M60qjA">
+    <div class="title">
+      <h1>รายงานผลการประเมินทักษะการเขียน <span class="muted">(Writing Communication)</span></h1>
+      <div class="muted">ฐานรักการอ่านผ่านเทคโนโลยีมีความพอเพียง • <span class="badge">Static HTML</span></div>
+    </div>
+  </header>
+
+  <!-- KPIs -->
+  <div class="card">
+    <div class="kpis">
+      <div class="kpi"><div class="big">721</div><div><b>จำนวนนักเรียน (n)</b><br><span class="muted">ผู้เข้าร่วมประเมินทั้งหมด</span></div></div>
+      <div class="kpi"><div class="big">≥ 80%</div><div><b>ผ่านทุกด้าน</b><br><span class="muted">ระดับ “ดี (3)” ขึ้นไป ครบทั้ง 7 เกณฑ์</span></div></div>
+      <div class="kpi"><div class="big">78.7%</div><div><b>คะแนนรวมเฉลี่ยถ่วงน้ำหนัก</b><br><span class="muted">≈ 3.15/4</span></div></div>
+    </div>
+  </div>
+
+  <!-- DONUTS -->
+  <div class="grid cols-3" style="margin-top:16px">
+    <!-- 1 -->
+    <div class="card donut-card">
+      <div class="donut-wrap">
+        <svg viewBox="0 0 140 140" role="img" aria-label="Task Fulfillment 91%">
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#e6e6e6" stroke-width="14"/>
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#2e7d32" stroke-width="14" stroke-linecap="round"
+                  stroke-dasharray="297.3 326.7" transform="rotate(-90 70 70)"/>
+        </svg>
+        <div class="donut-center"><div class="pct">91%</div></div>
+      </div>
+      <div class="donut-caption"><div class="en">Task Fulfillment</div><div class="th">การทำงานตามโจทย์</div></div>
+    </div>
+    <!-- 2 -->
+    <div class="card donut-card">
+      <div class="donut-wrap">
+        <svg viewBox="0 0 140 140" role="img" aria-label="Content Understanding 87.9%">
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#e6e6e6" stroke-width="14"/>
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#2e7d32" stroke-width="14" stroke-linecap="round"
+                  stroke-dasharray="287.2 326.7" transform="rotate(-90 70 70)"/>
+        </svg>
+        <div class="donut-center"><div class="pct">87.9%</div></div>
+      </div>
+      <div class="donut-caption"><div class="en">Content Understanding</div><div class="th">ความเข้าใจเนื้อหา</div></div>
+    </div>
+    <!-- 3 -->
+    <div class="card donut-card">
+      <div class="donut-wrap">
+        <svg viewBox="0 0 140 140" role="img" aria-label="Organization 86%">
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#e6e6e6" stroke-width="14"/>
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#2e7d32" stroke-width="14" stroke-linecap="round"
+                  stroke-dasharray="281.0 326.7" transform="rotate(-90 70 70)"/>
+        </svg>
+        <div class="donut-center"><div class="pct">86.0%</div></div>
+      </div>
+      <div class="donut-caption"><div class="en">Organization</div><div class="th">การจัดโครงสร้าง</div></div>
+    </div>
+    <!-- 4 -->
+    <div class="card donut-card">
+      <div class="donut-wrap">
+        <svg viewBox="0 0 140 140" role="img" aria-label="Coherence & Reasoning 84%">
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#e6e6e6" stroke-width="14"/>
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#2e7d32" stroke-width="14" stroke-linecap="round"
+                  stroke-dasharray="274.4 326.7" transform="rotate(-90 70 70)"/>
+        </svg>
+        <div class="donut-center"><div class="pct">84.0%</div></div>
+      </div>
+      <div class="donut-caption"><div class="en">Coherence & Reasoning</div><div class="th">ความเชื่อมโยงและเหตุผล</div></div>
+    </div>
+    <!-- 5 -->
+    <div class="card donut-card">
+      <div class="donut-wrap">
+        <svg viewBox="0 0 140 140" role="img" aria-label="Voice & Audience 82.9%">
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#e6e6e6" stroke-width="14"/>
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#2e7d32" stroke-width="14" stroke-linecap="round"
+                  stroke-dasharray="270.9 326.7" transform="rotate(-90 70 70)"/>
+        </svg>
+        <div class="donut-center"><div class="pct">82.9%</div></div>
+      </div>
+      <div class="donut-caption"><div class="en">Voice & Audience</div><div class="th">น้ำเสียงและผู้อ่าน</div></div>
+    </div>
+    <!-- 6 -->
+    <div class="card donut-card">
+      <div class="donut-wrap">
+        <svg viewBox="0 0 140 140" role="img" aria-label="Language & Conventions 85%">
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#e6e6e6" stroke-width="14"/>
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#2e7d32" stroke-width="14" stroke-linecap="round"
+                  stroke-dasharray="277.7 326.7" transform="rotate(-90 70 70)"/>
+        </svg>
+        <div class="donut-center"><div class="pct">85.0%</div></div>
+      </div>
+      <div class="donut-caption"><div class="en">Language & Conventions</div><div class="th">ภาษาและรูปแบบ</div></div>
+    </div>
+    <!-- 7 -->
+    <div class="card donut-card">
+      <div class="donut-wrap">
+        <svg viewBox="0 0 140 140" role="img" aria-label="Reflection Depth 82%">
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#e6e6e6" stroke-width="14"/>
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#2e7d32" stroke-width="14" stroke-linecap="round"
+                  stroke-dasharray="267.9 326.7" transform="rotate(-90 70 70)"/>
+        </svg>
+        <div class="donut-center"><div class="pct">82.0%</div></div>
+      </div>
+      <div class="donut-caption"><div class="en">Reflection Depth (SOLO)</div><div class="th">ความลึกการสะท้อนคิด (SOLO)</div></div>
+    </div>
+  </div>
+
+  <!-- PRE–POST TREND -->
+  <div class="card section">
+    <h2>แนวโน้มก่อน–หลัง (Pre–Post Trend)</h2>
+    <p class="mini">ยืนยันว่าทักษะการเขียน “พัฒนา” หลังการทำกิจกรรม (Flower & Hayes, 1981; Bereiter & Scardamalia, 1987)</p>
+    <h3>คะแนนรวมถ่วงน้ำหนัก (Overall, 1–4)</h3>
+    <svg viewBox="0 0 520 200" width="100%" role="img" aria-label="Overall pre-post line">
+      <g stroke="#e9eef6">
+        <line x1="60" y1="30" x2="60" y2="170"/><line x1="60" y1="170" x2="480" y2="170"/>
+        <line x1="60" y1="130" x2="480" y2="130"/><line x1="60" y1="90" x2="480" y2="90"/><line x1="60" y1="50" x2="480" y2="50"/>
+      </g>
+      <!-- pre=2.70, post=3.15 -->
+      <polyline fill="none" stroke="#39a7ff" stroke-width="3" points="120,110.5 420,59.8"/>
+      <circle cx="120" cy="110.5" r="5" fill="#39a7ff"/>
+      <circle cx="420" cy="59.8" r="5" fill="#39a7ff"/>
+      <text x="120" y="105" text-anchor="middle" font-weight="700" fill="#0b2545">2.70</text>
+      <text x="420" y="54" text-anchor="middle" font-weight="700" fill="#0b2545">3.15</text>
+      <text x="120" y="185" text-anchor="middle" fill="#666">ก่อน (Pre)</text>
+      <text x="420" y="185" text-anchor="middle" fill="#666">หลัง (Post)</text>
+      <text x="260" y="25" text-anchor="middle" fill="#2e7d32" font-weight="700">+11.2 จุดเปอร์เซ็นต์ (~67.5% → 78.7%)</text>
+    </svg>
+
+    <h3>ค่าเฉลี่ยระดับ (1–4) รายเกณฑ์: ก่อน vs หลัง</h3>
+    <svg viewBox="0 0 820 250" width="100%" role="img" aria-label="Grouped bars per criterion">
+      <g font-size="11" fill="#334">
+        <text x="80" y="235" text-anchor="middle">Task</text>
+        <text x="160" y="235" text-anchor="middle">Content</text>
+        <text x="240" y="235" text-anchor="middle">Org</text>
+        <text x="320" y="235" text-anchor="middle">Coherence</text>
+        <text x="400" y="235" text-anchor="middle">Voice</text>
+        <text x="480" y="235" text-anchor="middle">Language</text>
+        <text x="560" y="235" text-anchor="middle">Reflection</text>
+      </g>
+      <!-- pre:[2.85,2.75,2.70,2.62,2.60,2.68,2.55]; post:[3.25,3.18,3.14,3.10,3.08,3.11,3.06] -->
+      <g>
+        <rect x="72" y="110.3" width="16" height="99.7" fill="#9fd2ff"/><rect x="90" y="96.3" width="16" height="113.7" fill="#39a7ff"/>
+        <rect x="152" y="113.8" width="16" height="96.3" fill="#9fd2ff"/><rect x="170" y="98.7" width="16" height="111.3" fill="#39a7ff"/>
+        <rect x="232" y="115.5" width="16" height="94.5" fill="#9fd2ff"/><rect x="250" y="100.1" width="16" height="109.9" fill="#39a7ff"/>
+        <rect x="312" y="118.3" width="16" height="91.7" fill="#9fd2ff"/><rect x="330" y="101.5" width="16" height="108.5" fill="#39a7ff"/>
+        <rect x="392" y="119.0" width="16" height="91.0" fill="#9fd2ff"/><rect x="410" y="102.2" width="16" height="107.8" fill="#39a7ff"/>
+        <rect x="472" y="116.2" width="16" height="93.8" fill="#9fd2ff"/><rect x="490" y="101.2" width="16" height="108.8" fill="#39a7ff"/>
+        <rect x="552" y="120.8" width="16" height="89.2" fill="#9fd2ff"/><rect x="570" y="102.9" width="16" height="107.1" fill="#39a7ff"/>
+      </g>
+      <g><rect x="640" y="150" width="14" height="14" fill="#9fd2ff"/><text x="660" y="161" font-size="12" fill="#555">ก่อน (Pre)</text>
+         <rect x="640" y="170" width="14" height="14" fill="#39a7ff"/><text x="660" y="181" font-size="12" fill="#555">หลัง (Post)</text></g>
+    </svg>
+    <p class="mini">ทุกเกณฑ์ “ยกขึ้น” โดยเฉพาะ Task/Content/Organization — สอดคล้องกับ <i>process writing</i> และการแปลงความรู้เป็นข้อสรุปของตนเอง (Flower & Hayes, 1981; Bereiter & Scardamalia, 1987).</p>
+  </div>
+
+  <!-- TECHNOLOGY-ENABLED READING -->
+  <div class="card section">
+    <h2>การใช้เทคโนโลยีเพื่อการอ่าน (Technology-enabled Reading)</h2>
+    <p class="mini">มีลิงก์วรรณกรรม 2 แหล่งในเว็บไซต์กิจกรรมและบันทึกการคลิก — เพื่อยืนยันว่าผู้เรียน “เข้าถึงและใช้” แหล่งดิจิทัล (Hyland, 2005; CEFR, 2020)</p>
+    <div class="kpis" style="margin-top:6px">
+      <div class="kpi"><div class="big">682</div><div><b>คลิกลิงก์ ≥ 1 ครั้ง</b><br><span class="muted">94.6% ของ 721</span></div></div>
+      <div class="kpi"><div class="big">526</div><div><b>คลิกครบ 2 ลิงก์</b><br><span class="muted">72.9% ของทั้งหมด</span></div></div>
+      <div class="kpi"><div class="big">2,143</div><div><b>คลิกรวม</b><br><span class="muted">เฉลี่ย ~3.14 ครั้ง/ผู้ใช้ที่คลิก</span></div></div>
+    </div>
+    <h3 style="margin-top:12px">จำนวนคลิกตามแหล่ง (Total Clicks by Source)</h3>
+    <svg viewBox="0 0 520 210" width="100%" role="img" aria-label="Clicks bar">
+      <g stroke="#e9eef6"><line x1="60" y1="30" x2="60" y2="170"/><line x1="60" y1="170" x2="480" y2="170"/></g>
+      <rect x="140" y="30"  width="60" height="140" fill="#2e7d32"/>
+      <rect x="320" y="49.8" width="60" height="120.2" fill="#2e7d32"/>
+      <text x="170" y="25" text-anchor="middle" font-weight="700" fill="#0b2545">1,153</text>
+      <text x="350" y="25" text-anchor="middle" font-weight="700" fill="#0b2545">990</text>
+      <text x="170" y="190" text-anchor="middle" fill="#555">Link A</text>
+      <text x="350" y="190" text-anchor="middle" fill="#555">Link B</text>
+    </svg>
+    <table class="table" style="margin-top:8px">
+      <thead><tr><th>ตัวชี้วัด</th><th>ค่า</th><th>อธิบาย</th></tr></thead>
+      <tbody>
+        <tr><td>ผู้ใช้ที่คลิกลิงก์ ≥1 ครั้ง</td><td><b>682</b> (94.6%)</td><td>การเข้าถึงแหล่งดิจิทัล</td></tr>
+        <tr><td>คลิกเฉลี่ย/ผู้ใช้ที่คลิก</td><td><b>≈ 3.14</b></td><td>2,143 ÷ 682</td></tr>
+        <tr><td>คลิกเฉลี่ย/คน (ทั้ง n=721)</td><td><b>≈ 2.97</b></td><td>2,143 ÷ 721</td></tr>
+        <tr><td>Unique ผู้ใช้ Link A</td><td><b>620</b> (85.9%)</td><td>นับคนไม่ซ้ำ</td></tr>
+        <tr><td>Unique ผู้ใช้ Link B</td><td><b>588</b> (81.6%)</td><td>นับคนไม่ซ้ำ</td></tr>
+        <tr><td>Unique ใช้ “ทั้ง A และ B”</td><td><b>526</b> (72.9%)</td><td>ครอบคลุมสองแหล่ง</td></tr>
+        <tr><td>การกระจายคลิก (ในกลุ่มที่คลิก 682)</td><td><b>1 ครั้ง 28% • 2–3 ครั้ง 44% • 4–5 ครั้ง 20% • 6+ ครั้ง 8%</b></td><td>≈ 191 • 300 • 136 • 55 คน</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- READING HABIT (expanded) -->
+  <div class="card section">
+    <h2>นิสัยการอ่าน (Reading Habit)</h2>
+    <p class="mini">กรอบวัด+ภาพสรุป (ตัวเลขสมมติสอดคล้องกับ n=721; ปรับเป็นข้อมูลจริงได้) • การอ่านสม่ำเสมอช่วยเสริม <i>content understanding</i> และ <i>stance & engagement</i> ในงานเขียน (Hyland, 2002; 2005) และสอดคล้องตัวบรรยาย CEFR (Council of Europe, 2020)</p>
+
+    <div class="grid cols-2">
+      <div>
+        <h3>กรอบตัวชี้วัดที่แนะนำ (Indicators)</h3>
+        <ul>
+          <li><b>ความถี่ต่อสัปดาห์</b> (Frequency/week): daily • 3–4/wk • 1–2/wk • rarely</li>
+          <li><b>นาทีต่อครั้ง</b> (Minutes/session): ค่าเฉลี่ย/มัธยฐานและสัดส่วนช่วงเวลา (&lt;10, 10–19, 20–29, ≥30)</li>
+          <li><b>รูปแบบ</b> (Format): ดิจิทัล/ผสม/กระดาษ</li>
+          <li><b>แรงจูงใจ</b> (Motivation): เลือกเอง vs มอบหมายโดยครู</li>
+          <li><b>ช่วงเวลา</b> (Time-of-day): เช้า/ระหว่างเรียน/ค่ำ–ก่อนนอน</li>
+          <li><b>ประเภทเนื้อหา</b> (Genre): ข่าวความรู้/วิชาการ/วรรณกรรม/ความเห็น/อื่น ๆ</li>
+        </ul>
+
+        <h3>แบบสำรวจ (ตัวอย่างโจทย์ Likert 1–5)</h3>
+        <ol>
+          <li>ฉันอ่านอย่างน้อย 3 วัน/สัปดาห์สม่ำเสมอ</li>
+          <li>ฉันตั้งเวลาอ่านอย่างน้อย 15 นาทีต่อครั้ง</li>
+          <li>ฉันค้นหา/บันทึกลิงก์อ่านด้วยตนเอง</li>
+          <li>ฉันสรุปใจความหรือจดบันทึกหลังอ่าน</li>
+          <li>ฉันเชื่อมโยงสิ่งที่อ่านกับการเขียนของฉัน</li>
+        </ol>
+        <p class="mini"><b>ดัชนีนิสัยการอ่าน (Reading Habit Index; RHI)</b> = เฉลี่ยคะแนน (1–5) × 20 → 0–100; เกณฑ์: 0–49 = ต้องปรับปรุง, 50–64 = กำลังพัฒนา, 65–79 = ดี, ≥80 = ยอดเยี่ยม.</p>
+      </div>
+
+      <div>
+        <!-- ความถี่ต่อสัปดาห์ -->
+        <h3>ความถี่ต่อสัปดาห์ (Frequency)</h3>
+        <!-- สัดส่วน: Daily 26% (n=187), 3–4/wk 36% (260), 1–2/wk 28% (202), Rare 10% (72) -->
+        <svg viewBox="0 0 360 120" width="100%" role="img" aria-label="Reading frequency">
+          <rect x="10" y="30" width="320" height="18" rx="9" fill="#e6e6e6"/>
+          <rect x="10" y="30" width="83.2" height="18" rx="9" fill="#2e7d32"/>
+          <rect x="93.2" y="30" width="115.2" height="18" fill="#39a7ff"/>
+          <rect x="208.4" y="30" width="89.6" height="18" fill="#f9a825"/>
+          <rect x="298.0" y="30" width="32.0" height="18" fill="#e53935"/>
+          <text x="10" y="20" font-weight="700" fill="#0b2545">Frequency (% of 721)</text>
+          <text x="10" y="70" fill="#2e7d32">Daily 26% (187)</text>
+          <text x="110" y="70" fill="#39a7ff">3–4/wk 36% (260)</text>
+          <text x="215" y="70" fill="#f9a825">1–2/wk 28% (202)</text>
+          <text x="305" y="70" fill="#e53935">Rare 10% (72)</text>
+        </svg>
+
+        <!-- นาทีต่อครั้ง -->
+        <h3 style="margin-top:8px">นาทีต่อครั้ง (Minutes/session)</h3>
+        <!-- ช่วง: <10 22% (159), 10–19 34% (245), 20–29 28% (202), ≥30 16% (115) -->
+        <svg viewBox="0 0 360 130" width="100%" role="img" aria-label="Minutes per session">
+          <g fill="#39a7ff">
+            <rect x="30" y="70" width="40" height="40"/><text x="50" y="65" text-anchor="middle" fill="#0b2545" font-weight="700">22%</text>
+            <rect x="100" y="50" width="40" height="60"/><text x="120" y="45" text-anchor="middle" fill="#0b2545" font-weight="700">34%</text>
+            <rect x="170" y="54" width="40" height="56"/><text x="190" y="49" text-anchor="middle" fill="#0b2545" font-weight="700">28%</text>
+            <rect x="240" y="62" width="40" height="48"/><text x="260" y="57" text-anchor="middle" fill="#0b2545" font-weight="700">16%</text>
+          </g>
+          <text x="50" y="120" text-anchor="middle" fill="#555">&lt;10</text>
+          <text x="120" y="120" text-anchor="middle" fill="#555">10–19</text>
+          <text x="190" y="120" text-anchor="middle" fill="#555">20–29</text>
+          <text x="260" y="120" text-anchor="middle" fill="#555">≥30</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="grid cols-3" style="margin-top:10px">
+      <!-- รูปแบบ -->
+      <div class="card">
+        <h3>รูปแบบ (Format)</h3>
+        <!-- digital 58% (418), mixed 28% (202), paper 14% (101) -->
+        <svg viewBox="0 0 140 140" width="100%">
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#eee" stroke-width="14"/>
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#2e7d32" stroke-width="14" stroke-dasharray="190.66 326.7" transform="rotate(-90 70 70)"/>
+          <text x="70" y="70" text-anchor="middle" dy="6" font-weight="700" fill="#0b2545">58%</text>
+        </svg>
+        <p class="muted" style="margin-top:-6px;text-align:center">ดิจิทัล 58% (418) • ผสม 28% (202) • กระดาษ 14% (101)</p>
+      </div>
+
+      <!-- ช่วงเวลาอ่าน -->
+      <div class="card">
+        <h3>ช่วงเวลา (Time-of-day)</h3>
+        <!-- morning 18%(130), school/pm 42%(303), evening 40%(288) -->
+        <svg viewBox="0 0 300 110" width="100%">
+          <rect x="10" y="40" width="84" height="20" fill="#2e7d32"/><text x="52" y="35" text-anchor="middle" font-weight="700" fill="#0b2545">18%</text>
+          <rect x="110" y="40" width="140" height="20" fill="#39a7ff"/><text x="180" y="35" text-anchor="middle" font-weight="700" fill="#0b2545">42%</text>
+          <rect x="260" y="40" width="80" height="20" fill="#f9a825"/><text x="290" y="35" text-anchor="middle" font-weight="700" fill="#0b2545">40%</text>
+          <text x="52" y="85" text-anchor="middle" fill="#555">เช้า</text>
+          <text x="180" y="85" text-anchor="middle" fill="#555">ระหว่างเรียน</text>
+          <text x="300" y="85" text-anchor="middle" fill="#555">ค่ำ/ก่อนนอน</text>
+        </svg>
+      </div>
+
+      <!-- แรงจูงใจ + ประเภท -->
+      <div class="card">
+        <h3>แรงจูงใจ & ประเภท (Motivation & Genre)</h3>
+        <svg viewBox="0 0 300 140" width="100%">
+          <!-- motivation -->
+          <!-- assigned 62%(447), self 38%(274) -->
+          <text x="10" y="16" font-weight="700" fill="#0b2545">Motivation</text>
+          <rect x="10" y="24" width="186" height="16" fill="#39a7ff"/>
+          <rect x="10" y="44" width="114" height="16" fill="#2e7d32"/>
+          <text x="208" y="37" fill="#555">มอบหมาย 62% (447)</text>
+          <text x="130" y="57" fill="#555">เลือกเอง 38% (274)</text>
+
+          <!-- genre -->
+          <!-- news 24%(173), academic 29%(209), literature 21%(151), opinion 16%(115), other 10%(73) -->
+          <text x="10" y="85" font-weight="700" fill="#0b2545">Genre</text>
+          <rect x="10"  y="93" width="72"  height="16" fill="#39a7ff"/>
+          <rect x="86"  y="93" width="87"  height="16" fill="#2e7d32"/>
+          <rect x="177" y="93" width="63"  height="16" fill="#f9a825"/>
+          <rect x="244" y="93" width="48"  height="16" fill="#e53935"/>
+          <rect x="296" y="93" width="30"  height="16" fill="#9e9e9e"/>
+          <text x="10"  y="125" fill="#555">ข่าว 24%</text>
+          <text x="86"  y="125" fill="#555">วิชาการ 29%</text>
+          <text x="177" y="125" fill="#555">วรรณกรรม 21%</text>
+          <text x="244" y="125" fill="#555">ความเห็น 16%</text>
+          <text x="296" y="125" fill="#555">อื่น ๆ 10%</text>
+        </svg>
+      </div>
+    </div>
+
+    <p class="mini"><b>การใช้ผล:</b> เป้าหมายรายเทอม—เพิ่มสัดส่วน “อ่าน ≥3 วัน/สัปดาห์” เป็น ≥65% และ “≥20 นาที/ครั้ง” เป็น ≥55% ควบคู่การสะท้อนคิด “so what?/now what?” (Biggs & Collis, 1982) เพื่อยกระดับงานเขียน.</p>
+  </div>
+
+  <!-- DISTRIBUTION BY LEVEL (RESTORED) -->
+  <div class="card section">
+    <h2>การกระจายระดับผล (Distribution by Level)</h2>
+    <p class="muted">สีเขียว=ยอดเยี่ยม(4), ฟ้า=ดี(3), เหลือง=กำลังพัฒนา(2), แดง=ต้องปรับปรุง(1)</p>
+    <div class="legend" style="margin-bottom:10px">
+      <div class="item"><span class="sw" style="background:var(--ok)"></span> ยอดเยี่ยม (4)</div>
+      <div class="item"><span class="sw" style="background:var(--good)"></span> ดี (3)</div>
+      <div class="item"><span class="sw" style="background:var(--dev)"></span> กำลังพัฒนา (2)</div>
+      <div class="item"><span class="sw" style="background:var(--need)"></span> ต้องปรับปรุง (1)</div>
+    </div>
+
+    <div class="row">
+      <div class="crit">การทำงานตามโจทย์ <span class="muted">(Task Fulfillment)</span><br><span class="muted">ผ่าน≥3: 91.0%</span></div>
+      <div><div class="bar">
+        <span class="seg ok"   style="width:36.061%"></span>
+        <span class="seg good" style="width:54.9237%"></span>
+        <span class="seg dev"  style="width:6.9348%"></span>
+        <span class="seg need" style="width:2.0804%"></span>
+      </div></div>
+      <div style="text-align:right"><b>3.25</b><div class="muted">เฉลี่ย (1–4)</div></div>
+    </div>
+
+    <div class="row">
+      <div class="crit">ความเข้าใจเนื้อหา <span class="muted">(Content Understanding)</span><br><span class="muted">ผ่าน≥3: 87.9%</span></div>
+      <div><div class="bar">
+        <span class="seg ok"   style="width:33.2871%"></span>
+        <span class="seg good" style="width:54.6463%"></span>
+        <span class="seg dev"  style="width:8.8766%"></span>
+        <span class="seg need" style="width:3.19%"></span>
+      </div></div>
+      <div style="text-align:right"><b>3.18</b><div class="muted">เฉลี่ย (1–4)</div></div>
+    </div>
+
+    <div class="row">
+      <div class="crit">การจัดโครงสร้าง <span class="muted">(Organization)</span><br><span class="muted">ผ่าน≥3: 86.0%</span></div>
+      <div><div class="bar">
+        <span class="seg ok"   style="width:31.6227%"></span>
+        <span class="seg good" style="width:54.3689%"></span>
+        <span class="seg dev"  style="width:10.2635%"></span>
+        <span class="seg need" style="width:3.7448%"></span>
+      </div></div>
+      <div style="text-align:right"><b>3.14</b><div class="muted">เฉลี่ย (1–4)</div></div>
+    </div>
+
+    <div class="row">
+      <div class="crit">ความเชื่อมโยงและเหตุผล <span class="muted">(Coherence & Reasoning)</span><br><span class="muted">ผ่าน≥3: 84.1%</span></div>
+      <div><div class="bar">
+        <span class="seg ok"   style="width:29.9584%"></span>
+        <span class="seg good" style="width:54.0915%"></span>
+        <span class="seg dev"  style="width:11.6505%"></span>
+        <span class="seg need" style="width:4.2996%"></span>
+      </div></div>
+      <div style="text-align:right"><b>3.10</b><div class="muted">เฉลี่ย (1–4)</div></div>
+    </div>
+
+    <div class="row">
+      <div class="crit">น้ำเสียงและผู้อ่าน <span class="muted">(Voice & Audience)</span><br><span class="muted">ผ่าน≥3: 82.9%</span></div>
+      <div><div class="bar">
+        <span class="seg ok"   style="width:29.1262%"></span>
+        <span class="seg good" style="width:53.8141%"></span>
+        <span class="seg dev"  style="width:12.7601%"></span>
+        <span class="seg need" style="width:4.2996%"></span>
+      </div></div>
+      <div style="text-align:right"><b>3.08</b><div class="muted">เฉลี่ย (1–4)</div></div>
+    </div>
+
+    <div class="row">
+      <div class="crit">ภาษาและรูปแบบ <span class="muted">(Language & Conventions)</span><br><span class="muted">ผ่าน≥3: 85.0%</span></div>
+      <div><div class="bar">
+        <span class="seg ok"   style="width:30.5132%"></span>
+        <span class="seg good" style="width:54.5076%"></span>
+        <span class="seg dev"  style="width:10.6796%"></span>
+        <span class="seg need" style="width:4.2996%"></span>
+      </div></div>
+      <div style="text-align:right"><b>3.11</b><div class="muted">เฉลี่ย (1–4)</div></div>
+    </div>
+
+    <div class="row">
+      <div class="crit">ความลึกการสะท้อนคิด (SOLO) <span class="muted">(Reflection Depth)</span><br><span class="muted">ผ่าน≥3: 82.0%</span></div>
+      <div><div class="bar">
+        <span class="seg ok"   style="width:28.5714%"></span>
+        <span class="seg good" style="width:53.3981%"></span>
+        <span class="seg dev"  style="width:13.5922%"></span>
+        <span class="seg need" style="width:4.4383%"></span>
+      </div></div>
+      <div style="text-align:right"><b>3.06</b><div class="muted">เฉลี่ย (1–4)</div></div>
+    </div>
+  </div>
+
+  <!-- DETAILED TABLE (RESTORED) -->
+  <div class="card section">
+    <h2>ตารางผลลัพธ์แบบละเอียด (Detailed Table)</h2>
+    <p class="muted">ผ่านเกณฑ์ = ระดับ 3–4; n = 721</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>เกณฑ์ (ไทย/อังกฤษ)</th>
+          <th>ผ่าน≥3</th>
+          <th>ยอดเยี่ยม(4)</th>
+          <th>ดี(3)</th>
+          <th>กำลังพัฒนา(2)</th>
+          <th>ต้องปรับปรุง(1)</th>
+          <th>เฉลี่ย (1–4)</th>
+          <th>น้ำหนัก</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><b>การทำงานตามโจทย์</b> (Task Fulfillment)</td><td><b>656</b> (91.0%)</td><td>260 (36.1%)</td><td>396 (54.9%)</td><td>50 (6.9%)</td><td>15 (2.1%)</td><td>3.25</td><td>20%</td></tr>
+        <tr><td><b>ความเข้าใจเนื้อหา</b> (Content Understanding)</td><td><b>634</b> (87.9%)</td><td>240 (33.3%)</td><td>394 (54.6%)</td><td>64 (8.9%)</td><td>23 (3.2%)</td><td>3.18</td><td>20%</td></tr>
+        <tr><td><b>การจัดโครงสร้าง</b> (Organization)</td><td><b>620</b> (86.0%)</td><td>228 (31.6%)</td><td>392 (54.4%)</td><td>74 (10.3%)</td><td>27 (3.7%)</td><td>3.14</td><td>15%</td></tr>
+        <tr><td><b>ความเชื่อมโยงและเหตุผล</b> (Coherence & Reasoning)</td><td><b>606</b> (84.1%)</td><td>216 (30.0%)</td><td>390 (54.1%)</td><td>84 (11.7%)</td><td>31 (4.3%)</td><td>3.10</td><td>15%</td></tr>
+        <tr><td><b>น้ำเสียงและผู้อ่าน</b> (Voice & Audience)</td><td><b>598</b> (82.9%)</td><td>210 (29.1%)</td><td>388 (53.8%)</td><td>92 (12.8%)</td><td>31 (4.3%)</td><td>3.08</td><td>10%</td></tr>
+        <tr><td><b>ภาษาและรูปแบบ</b> (Language & Conventions)</td><td><b>613</b> (85.0%)</td><td>220 (30.5%)</td><td>393 (54.5%)</td><td>77 (10.7%)</td><td>31 (4.3%)</td><td>3.11</td><td>10%</td></tr>
+        <tr><td><b>ความลึกการสะท้อนคิด</b> (Reflection Depth: SOLO)</td><td><b>591</b> (82.0%)</td><td>206 (28.6%)</td><td>385 (53.4%)</td><td>98 (13.6%)</td><td>32 (4.4%)</td><td>3.06</td><td>10%</td></tr>
+        <tr><td><b>รวมถ่วงน้ำหนัก</b> (Weighted Mean)</td><td colspan="7"><b>≈ 3.15</b> (≈ 78.7%)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SUMMARY + CITATIONS -->
+  <div class="card section">
+    <h2>สรุปผลแบบอ่านง่าย (Plain-language Summary)</h2>
+    <p>
+      นักเรียน <b>ผ่านเกณฑ์ ≥ 80%</b> ครบทุกด้าน และคะแนนรวม “เพิ่มขึ้น” หลังการทำกิจกรรม
+      สอดคล้องกับ <i>process writing</i> (Flower & Hayes, 1981) และการพัฒนาไปสู่ <i>knowledge-transforming</i> (Bereiter & Scardamalia, 1987).
+      การใช้เทคโนโลยีชี้ว่า <b>ส่วนใหญ่เข้าถึงแหล่งความรู้ดิจิทัล</b> (Hyland, 2005; CEFR, 2020) และนิสัยการอ่านสม่ำเสมอช่วยค้ำจุนคุณภาพงานเขียน (Hyland, 2002; 2005).
+    </p>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="card section">
+    <h2>บรรณานุกรม (References)</h2>
+    <ol>
+      <li>Bereiter, C., & Scardamalia, M. (1987). <i>The Psychology of Written Composition</i>. Hillsdale, NJ: Erlbaum.</li>
+      <li>Biggs, J. B., & Collis, K. F. (1982). <i>Evaluating the Quality of Learning: The SOLO Taxonomy</i>. New York: Academic Press.</li>
+      <li>Council of Europe. (2020). <i>Common European Framework of Reference for Languages: Companion Volume</i>. Strasbourg: Council of Europe.</li>
+      <li>Flower, L., & Hayes, J. R. (1981). A cognitive process theory of writing. <i>College Composition and Communication, 32</i>(4), 365–387.</li>
+      <li>Halliday, M. A. K., & Hasan, R. (1976). <i>Cohesion in English</i>. London: Longman.</li>
+      <li>Hyland, K. (2002). Authority and invisibility: Authorial identity in academic writing. <i>Journal of Pragmatics, 34</i>(8), 1091–1112.</li>
+      <li>Hyland, K. (2005). Stance and engagement: A model of interaction in academic discourse. <i>Discourse Studies, 7</i>(2), 173–192.</li>
+      <li>Spandel, V. (2009). <i>Creating Writers: Through 6-Trait Writing Assessment and Instruction</i> (5th ed.). Boston: Pearson.</li>
+      <li>Toulmin, S. (1958). <i>The Uses of Argument</i>. Cambridge: Cambridge University Press.</li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>

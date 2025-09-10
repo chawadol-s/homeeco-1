@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>สรุปผลการแยกขยะ (ฉบับน้อง ๆ) — Comprehensive</title>
+
+  <!-- ฟอนต์ Prompt -->
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- Chart.js 4 (UMD) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+
+  <style>
+    :root{
+      --primary:#1976d2;--white:#fff;--light:#f5f5f5;--dark:#333;--border:#e0e0e0;
+      --card:rgba(255,255,255,.9);--ok:#4caf50;--warn:#ff9800;--info:#0288d1
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Prompt',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--light);color:var(--dark);line-height:1.75}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+
+    header{background:var(--white);text-align:center;padding:28px 16px;border-radius:18px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin:18px 0;border:1px solid #fff}
+    .logo{width:86px;border-radius:12px;box-shadow:0 4px 12px rgba(25,118,210,.15);margin-bottom:12px}
+    h1{font-size:1.9rem;font-weight:700;letter-spacing:-.02em}
+    .subtitle{opacity:.85;margin-top:6px}
+
+    section{background:var(--card);backdrop-filter:blur(16px);border-radius:16px;padding:18px;margin:14px 0;border:1px solid rgba(255,255,255,.85);box-shadow:0 6px 18px rgba(0,0,0,.05)}
+    h2{font-size:1.3rem;color:var(--primary);display:flex;align-items:center;font-weight:700;margin-bottom:10px}
+    h2 span{display:inline-flex;width:26px;height:26px;background:var(--primary);color:#fff;border-radius:50%;align-items:center;justify-content:center;font-size:.9rem;margin-right:10px}
+    h3{font-size:1.08rem;margin:.6rem 0 .4rem;font-weight:700}
+    p{margin:.45rem 0}
+    ul{margin-left:1.1rem}
+    .muted{opacity:.8}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+    .card{background:var(--white);border:1px solid #fff;border-radius:14px;padding:14px;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+
+    .pill{display:inline-block;padding:.28rem .7rem;border-radius:999px;font-size:.82rem;font-weight:600;color:#fff;background:var(--ok);margin-left:6px}
+    .pill-warn{background:var(--warn)}
+    .pill-info{background:var(--info)}
+
+   .chip{display:inline-block;padding:.2rem .55rem;border-radius:999px;font-size:.78rem;background:rgba(25,118,210,.08);border:1px solid rgba(25,118,210,.2);margin:.15rem .25rem}
+
+    table{width:100%;border-collapse:collapse;margin:.9rem 0;overflow:hidden;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.03)}
+    th,td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:left}
+    th{background:var(--primary);color:#fff;font-weight:600}
+    tr:nth-child(even){background:rgba(255,255,255,.6)}
+
+    .chart{height:310px;margin:10px 0;position:relative}
+    .wide{height:360px}
+
+    .tip{background:rgba(25,118,210,.06);border-left:3px solid var(--primary);padding:12px;border-radius:12px;margin:.6rem 0}
+    .note{background:rgba(255,152,0,.08);border-left:3px solid var(--warn);padding:12px;border-radius:12px;margin:.6rem 0}
+
+    .tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:8px}
+    .tab{padding:10px 16px;cursor:pointer;font-weight:600;opacity:.7;border-bottom:3px solid transparent}
+    .tab.active{opacity:1;color:var(--primary);border-bottom:3px solid var(--primary)}
+    .tab-ct{display:none}
+    .tab-ct.active{display:block;animation:fade .35s ease}
+    @keyframes fade{from{opacity:0}to{opacity:1}}
+
+    footer{text-align:center;color:#555;opacity:.85;margin:18px 0}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HERO -->
+    <header>
+      <img class="logo" src="https://lh7-rt.googleusercontent.com/formsz/AN7BsVDNKaR7kIShf4Yw_1a93wTYR1WgC1p1bo0tFxdN9W7F9viAe8pIJWAJDn-Q04-iEdZFnivqTzRvPv55L_TyzeLDZ3NQBGSKhlKwySdPXxXAWbMcLe2InQ4cp7mRLFwofyy6PT4IdTAvSbgtGbVEnDjXmw=w740?key=qIqXIF8XXdw30eF-M60qjA" alt="โลโก้">
+      <h1>สรุปผลการแยกขยะ (ฉบับน้อง ๆ) — Comprehensive</h1>
+      <p class="subtitle">ศึกษาว่าเด็ก ๆ เข้าใจการแยกขยะแค่ไหน และทำได้จริงไหม (นร.ทั้งหมด 721 คน)</p>
+    </header>
+
+    <!-- 1 บริบท -->
+    <section>
+      <h2><span>1</span> บริบท & เป้าหมาย</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>ทำไมต้องแยกขยะ?</h3>
+          <p>ช่วยลดกลิ่น ลดแมลง โรงเรียนสะอาด รีไซเคิลได้มากขึ้น และช่วยโลก 🌏</p>
+          <div class="chip">สะอาดขึ้น</div><div class="chip">ขายรีไซเคิลได้</div><div class="chip">ลดขยะฝังกลบ</div>
+        </div>
+        <div class="card">
+          <h3>เราอยากรู้อะไร</h3>
+          <p>เด็ก ๆ <strong>รู้กติกา</strong> ไหม? <strong>เลือกถังได้ถูก</strong>ไหม? และ <strong>คิด/รู้สึก/มั่นใจ</strong>กับการแยกขยะอย่างไร?</p>
+          <div class="chip">ความรู้</div><div class="chip">สถานการณ์จริง</div><div class="chip">ใจพร้อม</div>
+        </div>
+        <div class="card">
+          <h3>แบบประเมิน</h3>
+          <ul>
+            <li><strong>ก</strong> ความรู้ (ปรนัย 12 ข้อ)</li>
+            <li><strong>ข</strong> สถานการณ์จริง (20 รายการ)</li>
+            <li><strong>ค</strong> ความคิด/ความรู้สึก (1–5)</li>
+          </ul>
+          <p class="muted">เวลาทำรวม ~12 นาที/คน</p>
+        </div>
+      </div>
+      <div class="tip"><strong>เกณฑ์ผ่าน</strong>: ก ≥ 10/12, ข ≥ 16/20, ค เฉลี่ยแต่ละด้าน ≥ 4.0 (เท่ากับ ≥ 80%)</div>
+    </section>
+
+    <!-- 2 สรุปสั้น ๆ -->
+    <section>
+      <h2><span>2</span> สรุปสั้น ๆ</h2>
+      <div class="chart"><canvas id="sumChart"></canvas></div>
+      <div class="grid">
+        <div class="card">
+          <h3>ภาพรวมดีมาก <span class="pill">ผ่าน</span></h3>
+          <p>ทุกด้านเฉลี่ยเกิน <strong>80%</strong> แปลว่าส่วนใหญ่ “รู้กติกา” และ “แยกได้ถูก”</p>
+        </div>
+        <div class="card">
+          <h3>เด่น</h3>
+          <p><strong>ความรู้ (85%)</strong> และ <strong>ทัศนคติที่ดี (85%)</strong> เด่นที่สุด</p>
+        </div>
+        <div class="card">
+          <h3>ควรเสริม <span class="pill pill-warn">ควรเสริม</span></h3>
+          <p><strong>บรรทัดฐานจากเพื่อน/ครู (81%)</strong> และ <strong>ความมั่นใจ (81%)</strong> ควรฝึกเพิ่ม</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 สิ่งที่วัด -->
+    <section>
+      <h2><span>3</span> สิ่งที่วัด & ตัวอย่าง</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>ส่วน ก — ความรู้</h3>
+          <p>รู้ว่า “อะไรทิ้งถังไหน”, “ของอันตรายต้องทำอย่างไร”</p>
+          <p class="muted">ตัวอย่าง: ขวดพลาสติก → รีไซเคิล, ถ่านไฟฉาย → อันตราย</p>
+        </div>
+        <div class="card">
+          <h3>ส่วน ข — สถานการณ์จริง</h3>
+          <p>ของ 20 อย่าง เลือกถังที่ควรทิ้ง</p>
+          <p class="muted">ตัวอย่าง: กล่อง UHT ล้าง-พับ → ตามกติกาพื้นที่</p>
+        </div>
+        <div class="card">
+          <h3>ส่วน ค — ความคิด/ความรู้สึก</h3>
+          <p>ให้คะแนน 1–5 เช่น “ฉันตั้งใจจะแยก”, “ฉันมั่นใจว่าแยกได้ถูก”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 ผลคะแนนรวม + Tabs -->
+    <section>
+      <h2><span>4</span> ผลคะแนนรวม</h2>
+      <div class="tabs">
+        <div class="tab active" data-t="perf">ตารางสรุป</div>
+        <div class="tab" data-t="bench">เทียบกับเกณฑ์</div>
+        <div class="tab" data-t="rel">ความน่าเชื่อถือ</div>
+        <div class="tab" data-t="cor">สิ่งที่เกี่ยวกัน</div>
+      </div>
+
+      <!-- ตารางสรุป + Radar -->
+      <div class="tab-ct active" id="ct-perf">
+        <table>
+          <thead>
+            <tr>
+              <th>หัวข้อ</th>
+              <th>เฉลี่ย (ดิบ)</th>
+              <th>%</th>
+              <th>ช่วงเชื่อมั่น 95%</th>
+              <th>สรุป</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>ความรู้ (12)</td><td>10.2</td><td>85.0</td><td>84.1–85.8</td><td><span class="pill">ผ่าน</span></td></tr>
+            <tr><td>สถานการณ์ (20)</td><td>16.9</td><td>84.5</td><td>83.7–85.3</td><td><span class="pill">ผ่าน</span></td></tr>
+            <tr><td>ทัศนคติ (1–5)</td><td>4.26</td><td>85.2</td><td>84.3–86.1</td><td><span class="pill">ผ่าน</span></td></tr>
+            <tr><td>เพื่อน/ครู (1–5)</td><td>4.05</td><td>81.0</td><td>80.1–81.9</td><td><span class="pill pill-warn">ควรเสริม</span></td></tr>
+            <tr><td>ความมั่นใจ (1–5)</td><td>4.03</td><td>80.6</td><td>79.7–81.5</td><td><span class="pill pill-warn">ควรเสริม</span></td></tr>
+            <tr><td>ความตั้งใจ (1–5)</td><td>4.18</td><td>83.6</td><td>82.7–84.5</td><td><span class="pill">ผ่าน</span></td></tr>
+          </tbody>
+        </table>
+
+        <div class="grid">
+          <div class="card">
+            <h3>กราฟภาพรวม</h3>
+            <div class="chart"><canvas id="radar"></canvas></div>
+            <p class="muted">ยิ่งพื้นที่กราฟกางออกมาก แปลว่าภาพรวมแข็งแรง</p>
+          </div>
+          <div class="card">
+            <h3>อ่านอย่างไร?</h3>
+            <ul>
+              <li>≥ 80% = <strong>ผ่าน</strong> (ทำได้ตามเป้าหมาย)</li>
+              <li>80–82% = <strong>ควรเสริม</strong> (หนุนอีกนิดจะดีมาก)</li>
+              <li>85%+ = <strong>ดีมาก</strong> (รักษาไว้)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- เทียบกับเกณฑ์ -->
+      <div class="tab-ct" id="ct-bench">
+        <div class="card">
+          <h3>ค่าเฉลี่ยโรงเรียน เทียบกับเกณฑ์ 80%</h3>
+          <div class="chart wide"><canvas id="benchChart"></canvas></div>
+          <p class="muted">แท่งสีน้ำเงิน = ค่าเฉลี่ยโรงเรียน, เส้นประ = เกณฑ์ 80%</p>
+        </div>
+      </div>
+
+      <!-- ความน่าเชื่อถือ -->
+      <div class="tab-ct" id="ct-rel">
+        <div class="card">
+          <h3>ความน่าเชื่อถือของแบบคำถาม (ส่วน ค)</h3>
+          <div class="chart"><canvas id="relChart"></canvas></div>
+          <p class="note"><strong>หมายเหตุ</strong>: ค่าประมาณนี้บอกว่าแบบคำถามของเรา “น่าเชื่อถือ” ใช้วัดซ้ำก็ได้ผลใกล้เคียงกัน</p>
+        </div>
+      </div>
+
+      <!-- ความสัมพันธ์ -->
+      <div class="tab-ct" id="ct-cor">
+        <div class="card">
+          <h3>สิ่งที่เกี่ยวกัน</h3>
+          <p><strong>ยิ่งรู้มาก → ยิ่งแยกได้ถูก</strong> และ <strong>ยิ่งทัศนคติดี/มั่นใจ → ยิ่งตั้งใจแยก</strong></p>
+          <div class="chart"><canvas id="corChart"></canvas></div>
+          <p class="muted">ดูที่ขนาด/ตำแหน่งของวงกลมและข้อความใน tooltip</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 ความรู้ 3 แบบ -->
+    <section>
+      <h2><span>5</span> ความรู้ 3 แบบที่ช่วยให้แยกได้ถูก</h2>
+      <div class="chart"><canvas id="knowChart"></canvas></div>
+      <ul>
+        <li><strong>เชิงระบบ</strong>: อะไรทิ้งถังไหน</li>
+        <li><strong>เชิงปฏิบัติ</strong>: ทำอย่างไรให้ถูก (ล้าง/พับ/แยก)</li>
+        <li><strong>เชิงเหตุผล</strong>: ทำไมต้องแยก (ช่วยโลก ช่วยโรงเรียน)</li>
+      </ul>
+    </section>
+
+    <!-- 6 แผนพัฒนา -->
+    <section>
+      <h2><span>6</span> แผนพัฒนา (ทำได้เลย)</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>ทบทวนกติกาสั้น ๆ</h3>
+          <p>ต้นเทอม 5 นาที: อะไรทิ้งถังไหน + ทำไม + ทำอย่างไร</p>
+        </div>
+        <div class="card">
+          <h3>ป้ายตัวอย่างจริง</h3>
+          <p>ติดที่จุดทิ้ง พร้อมรูปของจริง “ล้าง-พับ-แยก”</p>
+        </div>
+        <div class="card">
+          <h3>ชวนเพื่อนช่วยเตือน</h3>
+          <p>ตั้งเป้ารายห้อง “แยกถูก 100% สัปดาห์นี้”</p>
+        </div>
+        <div class="card">
+          <h3>ซ้อมเร็วหน้าถัง</h3>
+          <p>ฝึก 3 นาที: ล้าง/บีบกล่อง, แยกขยะอันตรายให้ถูก</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 ภาคผนวก -->
+    <section>
+      <h2><span>7</span> ภาคผนวก: อ่านกราฟให้เข้าใจง่าย</h2>
+      <ul>
+        <li><strong>Radar</strong> — พื้นที่กว้าง = ภาพรวมดี</li>
+        <li><strong>Bar</strong> — แท่งสูงใกล้ 100% = สำคัญ/ทำได้ดี</li>
+        <li><strong>Doughnut</strong> — ค่าสูงขึ้น (เช่น 0.86) = น่าเชื่อถือขึ้น</li>
+        <li><strong>Bubble</strong> — วงกลมยิ่งสูง (r มาก) = เกี่ยวกันมาก</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>© 2024 โรงเรียนและชุมชนของเรา ร่วมมือกันแยกขยะให้เป็นเรื่องง่าย ♻️</footer>
+
+  <script>
+    // ให้สคริปต์รันหลังจาก Chart.js โหลดเสร็จ (defer) และ DOM พร้อม
+    window.addEventListener('DOMContentLoaded', () => {
+      // ===== Tabs =====
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+          document.querySelectorAll('.tab-ct').forEach(x => x.classList.remove('active'));
+          tab.classList.add('active');
+          document.getElementById('ct-' + tab.dataset.t).classList.add('active');
+        });
+      });
+
+      // ===== Data =====
+      const perfLabels = ['ความรู้','สถานการณ์','ทัศนคติ','เพื่อน/ครู','ความมั่นใจ','ความตั้งใจ'];
+      const perfValues = [85.0,84.5,85.2,81.0,80.6,83.6];
+      const bench = 80;
+
+      // ===== Chart helpers =====
+      const commonRadarOpts = {
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ display:false } },
+        scales:{ r:{ suggestedMin:75, suggestedMax:90, angleLines:{ display:true } } }
+      };
+
+      // 1) Radar สรุปบนสุด
+      new Chart(document.getElementById('sumChart'), {
+        type:'radar',
+        data:{ labels: perfLabels, datasets:[{ label:'ผล (%)', data: perfValues, backgroundColor:'rgba(25,118,210,.2)', borderColor:'rgba(25,118,210,1)', pointBackgroundColor:'rgba(25,118,210,1)' }]},
+        options: commonRadarOpts
+      });
+
+      // 2) Radar ในแท็บ "ตารางสรุป"
+      new Chart(document.getElementById('radar'), {
+        type:'radar',
+        data:{ labels: perfLabels, datasets:[{ label:'ผล (%)', data: perfValues, backgroundColor:'rgba(25,118,210,.18)', borderColor:'rgba(25,118,210,1)' }]},
+        options: commonRadarOpts
+      });
+
+      // 3) Bar ความรู้ 3 แบบ
+      new Chart(document.getElementById('knowChart'), {
+        type:'bar',
+        data:{
+          labels:['เชิงระบบ','เชิงปฏิบัติ','เชิงเหตุผล'],
+          datasets:[{
+            label:'ความสำคัญ',
+            data:[78,85,92],
+            backgroundColor:['rgba(25,118,210,.7)','rgba(25,118,210,.8)','rgba(25,118,210,.9)'],
+            borderColor:'rgba(25,118,210,1)', borderWidth:1
+          }]
+        },
+        options:{
+          responsive:true, maintainAspectRatio:false,
+          plugins:{ legend:{ display:false }, tooltip:{ enabled:true } },
+          scales:{ y:{ beginAtZero:true, max:100, title:{ display:true, text:'สัดส่วนสัมพัทธ์ (%)' } } }
+        }
+      });
+
+      // 4) Doughnut ความน่าเชื่อถือ
+      new Chart(document.getElementById('relChart'), {
+        type:'doughnut',
+        data:{
+          labels:['ทัศนคติ (α=.86)','เพื่อน/ครู (α=.79)','ความมั่นใจ (α=.81)','ความตั้งใจ (α=.84)'],
+          datasets:[{
+            data:[86,79,81,84],
+            backgroundColor:['rgba(76,175,80,.85)','rgba(255,152,0,.85)','rgba(33,150,243,.85)','rgba(156,39,176,.85)'],
+            borderColor:'#fff', borderWidth:2
+          }]
+        },
+        options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom' } }, cutout:'60%' }
+      });
+
+      // 5) Bubble ความสัมพันธ์
+      new Chart(document.getElementById('corChart'), {
+        type:'bubble',
+        data:{ datasets:[{
+          label:'ความสัมพันธ์',
+          data:[
+            {x:1,y:54,r:15,label:'ความรู้ ↔ สถานการณ์'},
+            {x:2,y:41,r:12,label:'ความรู้ ↔ ความตั้งใจ'},
+            {x:3,y:57,r:16,label:'ทัศนคติ ↔ ความตั้งใจ'},
+            {x:4,y:49,r:14,label:'ความมั่นใจ ↔ ความตั้งใจ'},
+            {x:5,y:38,r:11,label:'เพื่อน/ครู ↔ ความตั้งใจ'}
+          ],
+          backgroundColor:'rgba(25,118,210,.75)', borderColor:'rgba(25,118,210,1)'
+        }]},
+        options:{
+          responsive:true, maintainAspectRatio:false,
+          plugins:{
+            legend:{ display:false },
+            tooltip:{ callbacks:{ label:(ctx)=> `${ctx.raw.label}: r = 0.${ctx.raw.y}` } }
+          },
+          scales:{
+            x:{ display:false, min:0, max:6 },
+            y:{ min:30, max:60, title:{ display:true, text:'r × 100' } }
+          }
+        }
+      });
+
+      // 6) Bar เทียบกับเกณฑ์ 80%
+      new Chart(document.getElementById('benchChart'), {
+        type:'bar',
+        data:{
+          labels: perfLabels,
+          datasets:[
+            {
+              type:'bar',
+              label:'ค่าเฉลี่ยโรงเรียน (%)',
+              data: perfValues,
+              backgroundColor:'rgba(25,118,210,.85)',
+              borderColor:'rgba(25,118,210,1)'
+            },
+            {
+              type:'line',
+              label:'เกณฑ์ 80%',
+              data: perfLabels.map(()=> bench),
+              borderColor:'rgba(0,0,0,.6)',
+              borderDash:[6,6],
+              pointRadius:0,
+              fill:false
+            }
+          ]
+        },
+        options:{
+          responsive:true, maintainAspectRatio:false,
+          plugins:{ legend:{ position:'bottom' } },
+          scales:{ y:{ beginAtZero:true, max:100, title:{ display:true, text:'เปอร์เซ็นต์' } } }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

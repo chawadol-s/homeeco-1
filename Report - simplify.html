@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>สรุปผลการแยกขยะ (ฉบับน้อง ๆ)</title>
+
+  <!-- ฟอนต์ Prompt -->
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- Chart.js (แนะนำเวอร์ชัน 4.x) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+
+  <style>
+    :root{
+      --primary:#1976d2;--white:#fff;--light:#f5f5f5;--dark:#333;--border:#e0e0e0;
+      --card:rgba(255,255,255,.88);--ok:#4caf50;--warn:#ff9800
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Prompt',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--light);color:var(--dark);line-height:1.7}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    header{background:var(--white);text-align:center;padding:28px 16px;border-radius:18px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin:18px 0}
+    .logo{width:86px;border-radius:12px;box-shadow:0 4px 12px rgba(25,118,210,.15);margin-bottom:12px}
+    h1{font-size:1.9rem;font-weight:700;letter-spacing:-.02em}
+    .subtitle{opacity:.8;margin-top:6px}
+
+    section{background:var(--card);backdrop-filter:blur(16px);border-radius:16px;padding:18px;margin:14px 0;border:1px solid rgba(255,255,255,.8);box-shadow:0 6px 18px rgba(0,0,0,.05)}
+    h2{font-size:1.3rem;color:var(--primary);display:flex;align-items:center;font-weight:700;margin-bottom:10px}
+    h2 span{display:inline-flex;width:26px;height:26px;background:var(--primary);color:#fff;border-radius:50%;align-items:center;justify-content:center;font-size:.9rem;margin-right:10px}
+    h3{font-size:1.05rem;margin:.6rem 0;font-weight:700}
+    p{margin:.5rem 0}
+    ul{margin-left:1.1rem}
+
+    .pill{display:inline-block;padding:.28rem .7rem;border-radius:999px;font-size:.82rem;font-weight:600;color:#fff;background:var(--ok);margin-left:6px}
+    .pill-warn{background:var(--warn)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+    .card{background:var(--white);border:1px solid #fff;border-radius:14px;padding:14px;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+
+    table{width:100%;border-collapse:collapse;margin:.8rem 0;overflow:hidden;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.03)}
+    th,td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:left}
+    th{background:var(--primary);color:#fff;font-weight:600}
+    tr:nth-child(even){background:rgba(255,255,255,.6)}
+
+    .chart{height:300px;margin:10px 0;position:relative}
+    .tip{background:rgba(25,118,210,.06);border-left:3px solid var(--primary);padding:12px;border-radius:12px;margin:.6rem 0}
+
+    .tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:8px}
+    .tab{padding:10px 16px;cursor:pointer;font-weight:600;opacity:.7;border-bottom:3px solid transparent}
+    .tab.active{opacity:1;color:var(--primary);border-bottom:3px solid var(--primary)}
+    .tab-ct{display:none}
+    .tab-ct.active{display:block;animation:fade .35s ease}
+    @keyframes fade{from{opacity:0}to{opacity:1}}
+
+    footer{text-align:center;color:#555;opacity:.8;margin:18px 0}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img class="logo" src="https://lh7-rt.googleusercontent.com/formsz/AN7BsVDNKaR7kIShf4Yw_1a93wTYR1WgC1p1bo0tFxdN9W7F9viAe8pIJWAJDn-Q04-iEdZFnivqTzRvPv55L_TyzeLDZ3NQBGSKhlKwySdPXxXAWbMcLe2InQ4cp7mRLFwofyy6PT4IdTAvSbgtGbVEnDjXmw=w740?key=qIqXIF8XXdw30eF-M60qjA" alt="โลโก้">
+      <h1>สรุปผลการแยกขยะ (ฉบับน้อง ๆ)</h1>
+      <p class="subtitle">เราศึกษาว่าเด็ก ๆ เข้าใจการแยกขยะแค่ไหน และทำได้จริงไหม (จำนวนนักเรียนทั้งหมด 721 คน)</p>
+    </header>
+
+    <section>
+      <h2><span>1</span> สรุปสั้น ๆ</h2>
+      <div class="chart"><canvas id="sumChart"></canvas></div>
+      <div class="grid">
+        <div class="card">
+          <h3>ภาพรวมดีมาก <span class="pill">ผ่าน</span></h3>
+          <p>ทุกด้านเฉลี่ยเกิน <strong>80%</strong> แปลว่าส่วนใหญ่ “รู้กติกา” และ “แยกได้ถูก”</p>
+        </div>
+        <div class="card">
+          <h3>เด่น</h3>
+          <p><strong>ความรู้ (85%)</strong> และ <strong>ทัศนคติที่ดี (85%)</strong> เด่นที่สุด</p>
+        </div>
+        <div class="card">
+          <h3>ควรเสริม <span class="pill pill-warn">ควรเสริม</span></h3>
+          <p><strong>บรรทัดฐานจากเพื่อน/ครู (81%)</strong> และ <strong>ความมั่นใจ (81%)</strong> ควรฝึกเพิ่ม</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span>2</span> เราทำอะไร</h2>
+      <p>แบบประเมินมี 3 ส่วน ทำครั้งเดียว ใช้เวลาประมาณ 12 นาที</p>
+      <ul>
+        <li><strong>ส่วน ก: ความรู้</strong> — คำถามปรนัย 12 ข้อ เรื่อง “ทิ้งถังไหน ทำไม”</li>
+        <li><strong>ส่วน ข: สถานการณ์จริง</strong> — มีของ 20 อย่าง ให้เลือกถังที่ควรทิ้ง</li>
+        <li><strong>ส่วน ค: ความคิดและความรู้สึก</strong> — ให้คะแนน 1–5 ว่าเห็นด้วย/มั่นใจแค่ไหน</li>
+      </ul>
+      <div class="tip"><strong>เกณฑ์ผ่าน</strong>: ส่วน ก ≥ 10/12, ส่วน ข ≥ 16/20, ส่วน ค ค่าเฉลี่ยแต่ละด้าน ≥ 4.0</div>
+    </section>
+
+    <section>
+      <h2><span>3</span> เราได้อะไร</h2>
+      <div class="chart"><canvas id="knowChart"></canvas></div>
+      <ul>
+        <li><strong>รู้ว่าอะไรทิ้งถังไหน</strong> (เชิงระบบ)</li>
+        <li><strong>รู้วิธีทำให้ถูก</strong> เช่น ล้าง บีบกล่องให้แบน (เชิงปฏิบัติ)</li>
+        <li><strong>รู้ว่าทำไมต้องแยก</strong> ช่วยโลก ช่วยโรงเรียนสะอาด (เชิงเหตุผล)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span>4</span> ผลคะแนน</h2>
+      <div class="tabs">
+        <div class="tab active" data-t="perf">ผลรวม</div>
+        <div class="tab" data-t="rel">ความน่าเชื่อถือ</div>
+        <div class="tab" data-t="cor">สิ่งที่เกี่ยวกัน</div>
+      </div>
+
+      <div class="tab-ct active" id="ct-perf">
+        <table>
+          <thead>
+            <tr>
+              <th>หัวข้อ</th>
+              <th>เฉลี่ย (ดิบ)</th>
+              <th>%</th>
+              <th>ช่วงเชื่อมั่น 95%</th>
+              <th>สรุป</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>ความรู้ (12)</td><td>10.2</td><td>85.0</td><td>84.1–85.8</td><td><span class="pill">ผ่าน</span></td></tr>
+            <tr><td>สถานการณ์ (20)</td><td>16.9</td><td>84.5</td><td>83.7–85.3</td><td><span class="pill">ผ่าน</span></td></tr>
+            <tr><td>ทัศนคติ (1–5)</td><td>4.26</td><td>85.2</td><td>84.3–86.1</td><td><span class="pill">ผ่าน</span></td></tr>
+            <tr><td>บรรทัดฐานจากเพื่อน/ครู (1–5)</td><td>4.05</td><td>81.0</td><td>80.1–81.9</td><td><span class="pill pill-warn">ควรเสริม</span></td></tr>
+            <tr><td>ความมั่นใจว่าแยกได้ (1–5)</td><td>4.03</td><td>80.6</td><td>79.7–81.5</td><td><span class="pill pill-warn">ควรเสริม</span></td></tr>
+            <tr><td>ความตั้งใจจะแยก (1–5)</td><td>4.18</td><td>83.6</td><td>82.7–84.5</td><td><span class="pill">ผ่าน</span></td></tr>
+          </tbody>
+        </table>
+
+        <div class="grid">
+          <div class="card">
+            <h3>กราฟภาพรวม</h3>
+            <div class="chart"><canvas id="radar"></canvas></div>
+          </div>
+          <div class="card">
+            <h3>สรุปง่าย ๆ</h3>
+            <ul>
+              <li>ข้อสอบความรู้และสถานการณ์ “ผ่านเกณฑ์”</li>
+              <li>เด็ก ๆ ส่วนใหญ่มี “ใจอยากแยก”</li>
+              <li>ถ้าช่วยกันเตือนกันมากขึ้น จะทำได้ดียิ่งขึ้น</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-ct" id="ct-rel">
+        <div class="chart"><canvas id="relChart"></canvas></div>
+        <p class="tip"><strong>หมายเหตุ</strong>: กราฟนี้บอกว่าแบบคำถามของเรา “น่าเชื่อถือ” เพียงพอ ใช้วัดซ้ำก็ได้ผลใกล้เคียงกัน</p>
+      </div>
+
+      <div class="tab-ct" id="ct-cor">
+        <div class="grid">
+          <div class="card">
+            <h3>สิ่งที่เกี่ยวกัน</h3>
+            <p><strong>ยิ่งรู้มาก → ยิ่งแยกได้ถูก</strong> และ <strong>ยิ่งทัศนคติดี/มั่นใจ → ยิ่งตั้งใจแยก</strong></p>
+            <div class="chart"><canvas id="corChart"></canvas></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>© 2024 โรงเรียนและชุมชนของเรา ร่วมมือกันแยกขยะให้เป็นเรื่องง่าย ♻️</footer>
+
+  <script>
+    // ให้สคริปต์รันหลังจาก Chart.js โหลดเสร็จ (defer แล้ว) และ DOM พร้อม
+    window.addEventListener('DOMContentLoaded', () => {
+      // สลับแท็บ
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+          document.querySelectorAll('.tab-ct').forEach(x => x.classList.remove('active'));
+          tab.classList.add('active');
+          document.getElementById('ct-' + tab.dataset.t).classList.add('active');
+        });
+      });
+
+      // 1) Radar รวม (บนสุด)
+      const sumCtx = document.getElementById('sumChart');
+      new Chart(sumCtx, {
+        type: 'radar',
+        data: {
+          labels: ['ความรู้','สถานการณ์','ทัศนคติ','เพื่อน/ครู','ความมั่นใจ','ความตั้งใจ'],
+          datasets: [{
+            label: 'ผล (%)',
+            data: [85.0,84.5,85.2,81.0,80.6,83.6],
+            backgroundColor:'rgba(25,118,210,.2)',
+            borderColor:'rgba(25,118,210,1)',
+            pointBackgroundColor:'rgba(25,118,210,1)'
+          }]
+        },
+        options: {
+          responsive:true, maintainAspectRatio:false,
+          plugins:{ legend:{ display:false } },
+          scales:{ r:{ suggestedMin:75, suggestedMax:90 } }
+        }
+      });
+
+      // 2) แท่ง: ความรู้ 3 แบบ
+      const knowCtx = document.getElementById('knowChart');
+      new Chart(knowCtx, {
+        type: 'bar',
+        data: {
+          labels: ['เชิงระบบ','เชิงปฏิบัติ','เชิงเหตุผล'],
+          datasets: [{
+            label: 'ความสำคัญ',
+            data: [78,85,92],
+            backgroundColor: ['rgba(25,118,210,.7)','rgba(25,118,210,.8)','rgba(25,118,210,.9)'],
+            borderColor: 'rgba(25,118,210,1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive:true, maintainAspectRatio:false,
+          plugins:{ legend:{ display:false } },
+          scales:{ y:{ beginAtZero:true, max:100 } }
+        }
+      });
+
+      // 3) Radar ภาพรวม (ในแท็บผลรวม)
+      const radarCtx = document.getElementById('radar');
+      new Chart(radarCtx, {
+        type: 'radar',
+        data: {
+          labels: ['ความรู้','สถานการณ์','ทัศนคติ','เพื่อน/ครู','ความมั่นใจ','ความตั้งใจ'],
+          datasets: [{
+            label: 'ผล (%)',
+            data: [85.0,84.5,85.2,81.0,80.6,83.6],
+            backgroundColor:'rgba(25,118,210,.18)',
+            borderColor:'rgba(25,118,210,1)'
+          }]
+        },
+        options: {
+          responsive:true, maintainAspectRatio:false,
+          plugins:{ legend:{ display:false } },
+          scales:{ r:{ suggestedMin:75, suggestedMax:90 } }
+        }
+      });
+
+      // 4) Doughnut ความน่าเชื่อถือ
+      const relCtx = document.getElementById('relChart');
+      new Chart(relCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['ทัศนคติ (α=.86)','เพื่อน/ครู (α=.79)','ความมั่นใจ (α=.81)','ความตั้งใจ (α=.84)'],
+          datasets: [{
+            data: [86,79,81,84],
+            backgroundColor:['rgba(76,175,80,.85)','rgba(255,152,0,.85)','rgba(33,150,243,.85)','rgba(156,39,176,.85)'],
+            borderColor:'#fff', borderWidth:2
+          }]
+        },
+        options: {
+          responsive:true, maintainAspectRatio:false,
+          plugins:{ legend:{ position:'bottom' } },
+          cutout:'60%'
+        }
+      });
+
+      // 5) Bubble ความสัมพันธ์
+      const corCtx = document.getElementById('corChart');
+      new Chart(corCtx, {
+        type: 'bubble',
+        data: {
+          datasets: [{
+            label: 'ความสัมพันธ์',
+            data: [
+              {x:1,y:54,r:15,label:'ความรู้ ↔ สถานการณ์'},
+              {x:2,y:41,r:12,label:'ความรู้ ↔ ความตั้งใจ'},
+              {x:3,y:57,r:16,label:'ทัศนคติ ↔ ความตั้งใจ'},
+              {x:4,y:49,r:14,label:'ความมั่นใจ ↔ ความตั้งใจ'},
+              {x:5,y:38,r:11,label:'เพื่อน/ครู ↔ ความตั้งใจ'}
+            ],
+            backgroundColor:'rgba(25,118,210,.75)',
+            borderColor:'rgba(25,118,210,1)'
+          }]
+        },
+        options: {
+          responsive:true, maintainAspectRatio:false,
+          plugins:{
+            legend:{ display:false },
+            tooltip:{ callbacks:{ label:(ctx)=> `${ctx.raw.label}: r = 0.${ctx.raw.y}` } }
+          },
+          scales:{
+            x:{ display:false, min:0, max:6 },
+            y:{ min:30, max:60, title:{ display:true, text:'r × 100' } }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
